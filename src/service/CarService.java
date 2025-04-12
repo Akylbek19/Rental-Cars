@@ -13,8 +13,8 @@ public class CarService {
     public void updateCar(int id, String newBrand, String newModel) {
         Car existingCar = getCar(id);
         if (existingCar != null) {
-            existingCar.setBrand(newBrand); // Теперь работает
-            existingCar.setModel(newModel); // Теперь работает
+            existingCar.setBrand(newBrand);
+            existingCar.setModel(newModel);
             saveCars();
         }
     }
