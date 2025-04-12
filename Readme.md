@@ -176,3 +176,9 @@ Process finished with exit code 0
 * Validator
 ###### Main.java
 ###### Readme.md
+
+
+## 📊 Presentation
+
+The project presentation is available on Canva:  
+[![Canva Presentation](https://img.shields.io/badge/View_Presentation-Canva-%2300C4CC?style=for-the-badge&logo=canva)](https://www.canva.com/design/DAGkcFECiDQ/3U9C28YKZ-2d1Ri7LzYqYA/view)
