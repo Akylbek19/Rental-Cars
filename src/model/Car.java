@@ -17,7 +17,7 @@ public class Car {
         this.available = available;
     }
 
-    // NEW: Добавленные сеттеры для brand и model
+
     public void setBrand(String brand) {
         if (brand == null || brand.isBlank()) {
             throw new IllegalArgumentException("The brand cannot be empty");
@@ -32,7 +32,7 @@ public class Car {
         this.model = model;
     }
 
-    // Существующие методы
+
     public void setAvailable(boolean available) {
         this.available = available;
     }
