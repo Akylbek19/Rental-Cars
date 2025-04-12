@@ -39,7 +39,7 @@ Console application for car rental management with CRUD operations, data persist
 === Car rental system ===
 1. Car management
 2. Car booking
-0. Exit
+3. Exit
    Choose: 1
 
 === Car management ===
@@ -47,30 +47,30 @@ Console application for car rental management with CRUD operations, data persist
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 1
-   * Brand: BMW
-  * Model: E34
-  * A car has been added!
+5. Back
+* Choose: 1
+* Brand: BMW
+* Model: E34
+* A car has been added!
 
 === Car management ===
 1. Add a car
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 1
-  * Brand: MERSEDEZ-BENZ
-  * Model: W210
-  * A car has been added!
+5. Back
+* Choose: 1
+* Brand: MERSEDEZ-BENZ
+* Model: W210
+* A car has been added!
 
 === Car management ===
 1. Add a car
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 2
+5. Back
+* Choose: 2
 
 List of cars:
 * ID: 1 | BMW E34 | Status: Available
@@ -81,14 +81,14 @@ List of cars:
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 0
+5. Back
+* Choose: 0
 
 === Car rental system ===
 1. Car management
 2. Car booking
-0. Exit
-  * Choose: 2
+3. Exit
+* Choose: 2
 
 === Car booking ===
 * Enter the car ID: 1
@@ -103,8 +103,8 @@ List of cars:
 === Car rental system ===
 1. Car management
 2. Car booking
-0. Exit
-   * Choose: 2
+3. Exit
+    * Choose: 2
 
 === Car booking ===
 * Enter the car ID: 1
@@ -119,16 +119,16 @@ List of cars:
 === Car rental system ===
 1. Car management
 2. Car booking
-0. Exit
-   * Choose: 1
+3. Exit
+    * Choose: 1
 
 === Car management ===
 1. Add a car
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 2
+5. Back
+* Choose: 2
 
 List of cars:
 * ID: 1 | BMW E34 | Status: Busy until 10.11.2024
@@ -139,14 +139,14 @@ List of cars:
 2. Show all cars
 3. Upgrade your car
 4. Delete a car
-0. Back
-  * Choose: 0
+5. Back
+* Choose: 0
 
 === Car rental system ===
 1. Car management
 2. Car booking
-0. Exit
-  * Choose: 0
+3. Exit
+* Choose: 0
 
 Process finished with exit code 0
 
@@ -157,18 +157,18 @@ Process finished with exit code 0
 - `DateTimeFormatter` for date parsing
 
 ### File Structure
-###### /data  
-   * cars.csv  
-* clients.csv  
-* bookings.csv  
-* /src  
-###### /model  
-* Car.java  
-* Client.java  
-* Booking.java  
-###### /service  
+###### /data
+* cars.csv
+* clients.csv
+* bookings.csv
+* /src
+###### /model
+* Car.java
+* Client.java
+* Booking.java
+###### /service
 * BookingService
-* CarService.java  
+* CarService.java
 * ClientService
 * FileService
 ###### /util
