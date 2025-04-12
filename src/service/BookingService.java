@@ -13,7 +13,7 @@ public class BookingService {
 
     public BookingService(CarService carService) {
         this.carService = carService;
-        loadBookings(); // Загрузка данных при создании сервиса
+        loadBookings();
     }
 
     public void createBooking(int carId, int clientId,
@@ -32,13 +32,13 @@ public class BookingService {
             throw new IllegalStateException("The car is already booked");
         }
 
-        // Обновляем статус авто
+
         car.setAvailable(false);
         car.setBookedUntil(endDate);
-        // Сохраняем изменения через CarService
+
         carService.updateCar(car.getId(), car.getBrand(), car.getModel());
 
-        // Создаем новое бронирование
+
         Booking newBooking = new Booking(
                 nextId++,
                 carId,
@@ -51,9 +51,9 @@ public class BookingService {
         System.out.println("Booking #" + newBooking.getId() + " successfully created!");
     }
 
-    // Загрузка бронирований из файла
+
     private void loadBookings() {
-        // Реализация загрузки из CSV
+
         try {
             List<String[]> data = FileService.loadFromCsv("bookings.csv");
             for (String[] row : data) {
@@ -71,7 +71,7 @@ public class BookingService {
         }
     }
 
-    // Сохранение бронирований в файл
+
     private void saveBookings() {
         try {
             List<String[]> data = new ArrayList<>();
@@ -90,7 +90,7 @@ public class BookingService {
         }
     }
 
-    // Дополнительные методы
+
     public List<Booking> getAllBookings() {
         return new ArrayList<>(bookings);
     }

@@ -9,7 +9,7 @@ public class CarService {
     private final List<Car> cars = new ArrayList<>();
     private int nextId = 1;
 
-    // NEW: Исправленный метод updateCar
+
     public void updateCar(int id, String newBrand, String newModel) {
         Car existingCar = getCar(id);
         if (existingCar != null) {
@@ -19,7 +19,7 @@ public class CarService {
         }
     }
 
-    // Остальные методы без изменений
+
     public void addCar(String brand, String model) {
         Car newCar = new Car(nextId++, brand, model, true);
         cars.add(newCar);
@@ -51,7 +51,7 @@ public class CarService {
     private void saveCars() {
         try {
             List<String[]> data = new ArrayList<>();
-            data.add(new String[]{"id","brand","model","available","bookedUntil"}); // заголовок
+            data.add(new String[]{"id","brand","model","available","bookedUntil"});
 
             for (Car car : cars) {
                 data.add(new String[]{
@@ -62,10 +62,10 @@ public class CarService {
                         car.getBookedUntil() != null ? car.getBookedUntil().toString() : ""
                 });
             }
-            FileService.saveToCsv(data, "cars.csv"); // Важно: без пути, только имя файла
+            FileService.saveToCsv(data, "cars.csv");
         } catch (Exception e) {
             System.err.println("Error saving cars: " + e.getMessage());
-            e.printStackTrace(); // Добавьте это для диагностики
+            e.printStackTrace();
         }
     }
 }

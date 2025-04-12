@@ -10,15 +10,15 @@ public class ClientService {
     private int nextId = 1;
 
     public ClientService() {
-        loadClients(); // Теперь правильно загружает данные
+        loadClients();
     }
 
-    // Реализованная загрузка клиентов
+
     private void loadClients() {
         List<String[]> data = FileService.loadFromCsv("clients.csv");
         if (data == null || data.isEmpty()) return;
 
-        // Пропускаем заголовок если есть
+
         int startIndex = data.get(0)[0].equals("id") ? 1 : 0;
 
         for (int i = startIndex; i < data.size(); i++) {
@@ -27,13 +27,13 @@ public class ClientService {
                     Integer.parseInt(row[0]), // id
                     row[1], // name
                     row[2], // email
-                    row.length > 3 ? row[3] : "" // phone (может отсутствовать)
+                    row.length > 3 ? row[3] : "" // phone
             ));
             nextId = Math.max(nextId, Integer.parseInt(row[0]) + 1);
         }
     }
 
-    // Полностью рабочее сохранение
+
     public void saveClients() {
         List<String[]> data = new ArrayList<>();
         // Добавляем заголовок
@@ -62,11 +62,11 @@ public class ClientService {
 
         Client newClient = new Client(nextId++, name, email, phone);
         clients.add(newClient);
-        saveClients(); // Теперь точно сохраняет
+        saveClients();
         return newClient;
     }
 
-    // Остальные методы без изменений
+
     public Client getClient(int id) {
         return clients.stream()
                 .filter(c -> c.getId() == id)
@@ -80,13 +80,13 @@ public class ClientService {
             if (name != null) client.setName(name);
             if (email != null) client.setEmail(email);
             if (phone != null) client.setPhone(phone);
-            saveClients(); // Сохраняем после изменений
+            saveClients();
         }
     }
 
     public void deleteClient(int id) {
         clients.removeIf(c -> c.getId() == id);
-        saveClients(); // Сохраняем после удаления
+        saveClients();
     }
 
     public List<Client> getAllClients() {
