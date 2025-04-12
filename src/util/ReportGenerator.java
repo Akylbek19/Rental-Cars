@@ -1,48 +1,55 @@
 package util;
 
-import model.Booking;
 import model.Car;
 import model.Client;
-import java.time.LocalDate;
+import model.Booking;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ReportGenerator {
+
     public static void generateCarsReport(List<Car> cars) {
-        System.out.println("\n=== Отчет по автомобилям ===");
-        System.out.printf("Всего автомобилей: %d\n", cars.size());
-
-        Map<String, Long> brandCount = cars.stream()
-                .collect(Collectors.groupingBy(Car::getBrand, Collectors.counting()));
-
-        System.out.println("\nКоличество по маркам:");
-        brandCount.forEach((brand, count) ->
-                System.out.printf("- %s: %d\n", brand, count));
+        System.out.println("\n=== Car Report ===");
+        System.out.printf("Total cars: %d\n", cars.size());
+        cars.forEach(car -> System.out.println(
+                "ID: " + car.getId() +
+                        " | " + car.getBrand() +
+                        " " + car.getModel() +
+                        " | Status: " + (car.isAvailable() ? "Free" : "Busy")
+        ));
     }
 
     public static void generateBookingsReport(List<Booking> bookings,
                                               List<Car> cars,
                                               List<Client> clients) {
-        System.out.println("\n=== Отчет по бронированиям ===");
-        System.out.printf("Всего бронирований: %d\n", bookings.size());
+        System.out.println("\n=== Booking Report ===");
+        bookings.forEach(b -> {
+            Car car = cars.stream()
+                    .filter(c -> c.getId() == b.getCarId())
+                    .findFirst()
+                    .orElse(null);
 
-        System.out.println("\nПоследние 5 бронирований:");
-        bookings.stream()
-                .limit(5)
-                .forEach(b -> {
-                    Car car = cars.stream().filter(c -> c.getId() == b.getCarId()).findFirst().orElse(null);
-                    Client client = clients.stream().filter(c -> c.getId() == b.getClientId()).findFirst().orElse(null);
-                    System.out.printf("%s | Авто: %s | Клиент: %s\n",
-                            b, car != null ? car.getBrand() + " " + car.getModel() : "N/A",
-                            client != null ? client.getName() : "N/A");
-                });
+            Client client = clients.stream()
+                    .filter(c -> c.getId() == b.getClientId())
+                    .findFirst()
+                    .orElse(null);
+
+            System.out.printf(
+                    "ID: %d | Car: %s | Client: %s | Period: %s - %s\n",
+                    b.getId(),
+                    car != null ? car.getBrand() : "N/A",
+                    client != null ? client.getName() : "N/A",
+                    b.getStartDate(),
+                    b.getEndDate()
+            );
+        });
     }
 
-    public static void generateDailyReport(LocalDate date, List<Booking> bookings) {
-        long count = bookings.stream()
-                .filter(b -> b.getStartDate().equals(date))
-                .count();
-        System.out.printf("\nБронирований на %s: %d\n", date, count);
+    public static void generateClientsReport(List<Client> clients) {
+        System.out.println("\n=== Client Report ===");
+        clients.forEach(client -> System.out.println(
+                "ID: " + client.getId() +
+                        " | Name: " + client.getName() +
+                        " | Email: " + client.getEmail()
+        ));
     }
 }

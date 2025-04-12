@@ -5,6 +5,7 @@ import service.BookingService;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import util.ReportGenerator;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class Main {
             switch (choice) {
                 case 1 -> manageCars();
                 case 2 -> bookCarMenu();
+                case 3 -> showReportsMenu();
                 case 0 -> System.exit(0);
                 default -> System.out.println("Wrong choice!");
             }
@@ -31,6 +33,7 @@ public class Main {
         System.out.println("\n=== Car rental system ===");
         System.out.println("1. Car management");
         System.out.println("2. Car booking");
+        System.out.println("3. Report");
         System.out.println("0. Exit");
         System.out.print("Choose: ");
     }
@@ -103,6 +106,28 @@ public class Main {
         scanner.nextLine();
         carService.deleteCar(id);
         System.out.println("The car was deleted!");
+    }
+
+    private static void showReportsMenu() {
+        System.out.println("\n=== Reports ===");
+        System.out.println("1. Car Report");
+        System.out.println("2. Booking Report");
+        System.out.println("3. Client Report");
+        System.out.println("0. Back");
+        System.out.print("Choose: ");
+
+        int reportChoice = getIntInput();
+        switch (reportChoice) {
+            case 1 -> ReportGenerator.generateCarsReport(carService.getAllCars());
+            case 2 -> ReportGenerator.generateBookingsReport(
+                    bookingService.getAllBookings(),
+                    carService.getAllCars(),
+                    clientService.getAllClients()
+            );
+            case 3 -> ReportGenerator.generateClientsReport(clientService.getAllClients());
+            case 0 -> { return; }
+            default -> System.out.println("Wrong choice!");
+        }
     }
 
     private static void bookCarMenu() {
